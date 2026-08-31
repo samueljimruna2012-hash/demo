@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arewa Pet Store | P2P Pet Marketplace</title>
+    <style>
+        :root {
+            --green:#123b2a;
+            --green2:#1d6044;
+            --cream: #fffaf1;
+            --gold:#d8a43b;
+            --text: #1d2a24;
+            --muted: #6d7772;
+            --white: #ffffff;
+            --line: #e9e5dc;
+            --shadow:0 12px 35px rgba(18,59,42,0.10);
+        }
+        *{
+            box-shadow: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            line-height: 1.5;
+        }
+        a{
+            text-decoration: none;
+            color: inherit;
+        }
+        button,input,select{
+            font: inherit;
+        }
+        /*TOP BAR*/
+        .topbar {
+            background:var(--green);
+            color: white;
+            padding: 9px 5%;
+            text-align: center;
+            font-size: 13px;
+        }
+        /*NAVIGATION*/
+        header{
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 1px solid var(--line);
+        }
+        nav{
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            gap: 20px;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--green);
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+        .paw {
+            background: var(--gold);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+        }
+        .navlinks{
+            display: flex;
+            gap: 22px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        .navlinks a:hover{
+            color: var(--green2);
+        }
+        .nav-actions{
+            display: flex;
+            gap: 9px;
+        }
+        /*BUTTON*/
+        .btn{
+            border: 0;
+            border-radius: 12px;
+            padding: 11px 16px;
+            cursor: pointer;
+            font-weight: 800;
+        }
+        .btn-ouline{
+            background: white;
+            border: 1px solid var(--green);
+        }
+        .btn-primary{
+            background: var(--green);
+            color: white;
+        }
+        .btn-gold{
+            background: var(--gold);
+            color: #1b241f;
+        }
+        /*HERO*/
+        .hero {
+            background: linear-gradient(
+                115deg,
+                #123b2a 0%
+                #1f6649 62%
+                #d8a43b 150%
+            );
+            color:white;         
+        }
+        .hero-inner{
+            max-width: 1200px;
+            margin: auto;
+            padding: 70px 20px 76px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 35px;
+            align-items: center;
+        }
+        .badge{
+            display:inline-block;
+            background: rgba(255,255,255,0.14);
+            padding: 7px 12px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 18px;
+        }
+        h1 {
+            font-size: clamp(38px, 6vw, 68px);
+            line-height: 1.02;
+            margin-bottom: 18px;
+        }
+        .hero p{
+            font-size: 18px;
+            max-width: 650px;
+            color: #eef6f1;
+        }
+        .hero-buttons{
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        .hero .btn-primary{
+            background: white;
+            color: var(--green);
+        }
+        /*HERO PET CARD*/
+        .hero-card{
+            background: rgba(255,255,255,0.12 );
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius:26px;
+            padding: 25px;
+        }
+        .hero-pets{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .pet-visual{
+            height: 150px;
+            border-radius: 20px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: end;
+            padding: 12px;
+            font-weight: 900;
+        }
+        .pet-visual span{
+            background: rgba(0,0,0,0.55);
+            padding: 5px 9px;
+            border-radius: 8px;
+        }
+        /* SEARCH */
+        .search-Wrap{
+            max-width: 1100px;
+            margin: -28px auto 0;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+       .searchbox{
+        background: white;
+        padding: 15px;
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr auto;
+        gap: 10px;
+       }
+       .input,
+       .select{
+        width: 100; 
+        border: 1px solid var(--line);
+        border-radius: 11px;
+        padding: 13px;
+        background: white;
+        outline: none;
+       }
+       .input:focus,
+       .select:focus{
+        border-color: var(--green);
+       }
+       /*SECTIONS*/
+       .section{
+        max-width:1200px;
+        margin: auto;
+        padding: 65px 20px;
+       }
+       .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        margin-bottom: 25px;
+        gap: 20px;
+       }
+       .section h2{
+        font-size: 32px;
+        color: var(--green);
+       }
+       .section-head p{
+        color: var(--muted);
+       }
+       /*PET GRID*/
+       .grid{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+       }
+       .card {
+        background: white;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 7px 25px
+        rgba(18,59,42,0.07);
+        border: 1px solid var(--line);
+       }
+       .card-img{
+        height: 210px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+       }
+       .status{
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        background: white;
+        padding: 6px 9px;
+        font-size: 11px;
+        font-weight: 900;
+       }
+       .heart{
+        position: absolute;
+        right: 12px;
+        top: 12px;
+        border: 0;
+        background: white;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 18px;
+       }
+       .card-body{
+        padding: 16px;
+       }
+       .card-body h3{
+        color: var(--green);
+       }
+       .location{
+        color: var(--muted);
+        font-size: 12px;
+       }
+       .price{
+        font-size: 21px;
+        font-weight: 900;
+        color: var(--green);
+        margin: 8px 0;
+       }
+       .seller {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding-top: 11px;
+        border-top: 1px solid var(--line);
+        font-size: 12px;
+       }
+       .avatar{
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #dbe8df;
+        display: grid;
+        place-items: center;
+        font-weight: 900;
+       }
+       /*FEATURES*/
+       .features {
+        background: white;
+       }
+       .feature-grid{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+       }
+       .feature{
+        padding: 25px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: var(--cream);
+       }
+       .feature-icon{
+        font-size: 32px;
+        margin-bottom: 6px;
+       }
+       .feature p {
+        color: var(--muted);
+        font-size: 14px;
+       }
+       /*HOW IT WORKS*/
+       .how{
+        background: var(--green);
+        color: white;
+       }
+       .how h2{
+        color: white;
+       }
+       .steps{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+        margin-top: 25px;
+       }
+       .step{
+        padding:22px;
+        border: 1px solid rgba(255,255,255,0.18 );
+        border-radius: 18px;
+        background: rgba(255,255,255,0.07);
+       }
+       .num{
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--gold);
+        color: #18251e;
+        display: grid;
+        place-items: center;
+        font-weight: 900;
+        margin-bottom: 13px;
+       }
+       /*CTA*/
+       .cta{
+        background: #f4ead1;
+       }
+       .cta-box{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 25px;
+        background: white;
+        border-radius: 24px;
+        padding: 35px;
+        border: 1px solid var(--line);
+       }
+       /*FOOTER*/
+       footer{
+        background: #0c2a1e;
+        color: #c9d8d0;
+        padding: 45px 20px;
+       }
+       .footer-inner{
+        max-width: 1200px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 30px;
+       }
+       footer h3{
+        color: white;
+        margin-bottom: 12px;
+       }
+       footer p,
+       footer a{
+        font-size: 13px;
+        color: #aebfb6;
+        display: block;
+        margin: 7px 0;
+       }
+       /*MODAL*/
+       .modal{
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.6);
+        z-index: 30;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+       }
+       .modal.open{
+        display: flex;
+       }
+       .modal-box{
+        background: white;
+        border-radius: 20px;
+        max-width: 520px;
+        width: 100%;
+        padding: 25px;
+       }
+       .modal-head{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 18px;
+       }
+       .close{
+        border: 0;
+        background: #eee;
+        border-radius: 50%;
+        width: 34px;
+        height: 34px;
+        cursor: pointer;
+        font-size: 20px;
+       }
+       .form-group{
+        margin: 12px 0;
+       }
+       .form-group label{
+        font-size: 13px;
+        font-weight: 800;
+        display: block;
+        margin-bottom: 6px;
+       }
+       /*TOAST*/
+       .toast{
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        background: var(--green);
+        color: white;
+        padding: 13px 17px;
+        border-radius: 12px;
+        display: none;
+        z-index: 50;
+       }
+       /*RESPONSIVE*/
+       @media(max-width:900px){
+        .hero-inner{
+            grid-template-columns: 1fr;
+        }
+        .grid{
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .steps {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .footer-inner{
+            grid-template-columns: 1fr 1fr;
+        }
+        .searchbox.btn{
+            grid-column: 1/-1;
+        }
+       }
+       @media(max-width:600px){
+        .navlinks{
+            display: none;
+        }
+        .grid,
+        .feature-grid,
+        .steps{
+            grid-template-columns: 1fr;
+        }
+        .searchbox{
+            grid-template-columns: 1fr;
+        }
+        .footer-inner{
+        grid-template-columns: 1fr;
+        }
+        .cta-box{
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .hero-inner{
+            padding-top: 48px;
+        }
+       }
+    </style>
+</head>
+<body>
+    <!--TOP BAR-->
+    <div class="topbar">
+        **AREWA PET STORE
+        -A trusted peer-to-peer pet Marketplace
+    </div>
+    <!--NAVIGATION-->
+    <header>
+        <nav>
+            <a class="logo" href="#">
+                <span class="paw">
+                    **
+                </span>
+                Arewa Pet Store
+            </a>
+            <div class="navlinks">
+                <a href="#pets">
+                    Find Pets 
+                </a>
+                <a href="#how">
+                    How It Works
+                </a>
+                <a href="#safety">
+                    Safety
+                </a>
+                <a href="#about">
+                    About
+                </a>
+            </div>
+            <div class="nav-actions">
+                <button
+                class="btn btn-ouline"
+                onclick="openModal('login')">Login</button>
+                <button class="btn btn-primary" onclick="openModal('sell')">
+                    Sell a Pet
+                </button>
+            </div>
+        </nav>
+    </header>
+    <!--HERO-->
+    <section class="hero">
+        <div class="hero-inner">
+            <div>
+                <span class="badge">
+                    MADE FOR PET LOVERS IN NIGERIA
+                </span>
+                <h1>
+                    Find a pet.<br>
+                    Meet a friend.
+                </h1>
+                <p>
+                    Arewa Pet Store connects pet lovers directly with trusted
+                    pet owners, breeders and pet businesses. Discover pets, chat with sellers
+                    and arrange safe local transactions.
+                </p>
+                <div class="hero-buttons">
+                <a class="btn btn-primary" href="#pets">
+                    Explore Pets
+                </a>
+                <button class="btn btn-gold" onclick="openModal('sell')">
+                    List Your Pet
+                </button>
+            </div>
+        </div>
+        <!--HERO PET IMAGES-->
+        <div class="hero-card">
+            <div class="hero-pets">
+                <div class="pet-visual" 
+                style="background-image: url('https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=700&q=80');">
+                 <span>
+                    Golden Retriever
+                 </span>
+                </div>
+                <div class="pet-visual" 
+                style="background-image: url('https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=700&q=80');">
+                 <span>
+                    Puppies
+                 </span>
+                </div>
+                <div class="pet-visual" 
+                style="background-image: url('https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=700&q=80');">
+                   <span>
+                    Healthy Pets
+                   </span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--SEARCH-->
+    <div class="search-Wrap">
+        <div class="searchbox">
+            <input id="search" class="input" placeholder="Search pets, breeds or prducts..." oninput="filterPets()">
+            <select id="type" class="select" onchange="filterPets()">
+                <option value="">
+                    All Pet Types
+                </option>
+                <option>
+                    Dog
+                </option>
+                <option>
+                    Cat
+                </option>
+                <option>
+                    Bird
+                </option>
+                <option>
+                    Rabbit
+                </option>
+            </select>
+            <select id="location" class="select" onchange="filterPets()">
+                <option value="">
+                    All Locations
+                </option>
+                <option>
+                    Jos
+                </option>
+                <option>
+                    Abuja
+                </option>
+                <option>
+                    Lagos
+                </option>
+                <option>
+                    Kano
+                </option>
+            </select>
+            <button class="btn btn-primary" onclick="filterPets()">
+                Search
+            </button>
+        </div>
+    </div>
+    <!--PETS-->
+    <section class="section" id="pets">
+        <div class="section-head">
+            <div>
+                <h2>
+                    Featured Pets
+                </h2>
+                <p>
+                    Browse listings from verified community sellers.
+                </p>
+            </div>
+            <button class="btn btn-ouline" onclick="openModal('sell')">
+                +Create Listing
+            </button>
+        </div>
+        <div class="grid" id="petGrid">
+            <!--PET 1-->
+            <article class="card pet-card" data-type="Dog" data-location="Jos" data-search="Golden Retriever Dog Puppy">
+                <div class="card-img" \
+                style="background-image: url(.https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=900&q=80);">
+                    <span class="status">
+                        *verified
+                    </span>
+                    <button class="heart" onclick="like(this)">
+                        **
+                    </button>
+                </div>
+                <div class="card-body">
+                    <h3>
+                        Golden Retriever
+                    </h3>
+                    <div class="location">
+                        Jos, Plateau
+                    </div>
+                    <div class="price">
+                        #450,000
+                    </div>
+                    <div class="seller">
+                        <span class="avatar">
+                            AM
+                        </span>
+                        <span>
+                            <b>Amaka M.</b>
+                            <br>
+                            Trusted seller *4.9 *
+                        </span>
+                    </div>
+                </div>
+            </article>
+            <!--PET 2-->
+            <article class="card pet-card" data-type="Cat" data-location="Abuja" data-search="Persian cat kitten">
+                <div class="card-img"
+                style="background-image: url('https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=900&q=80');">
+                  <span class="status">
+                    *verified
+                  </span>
+                  <button class="heart" onclick="like(this)">
+                    **
+                  </button>
+                </div>
+                <div class="card-body">
+                    <h3>
+                        Persian Cat
+                    </h3>
+                    <div class="location">
+                        Abuja,FCT
+                    </div>
+                    <div class="price">
+                        #180,000
+                    </div>
+                    <div class="seller">
+                        <span class="avatar">
+                            YA
+                        </span>
+                        <span>
+                            <b>Yusuf A.</b>
+                            <br>
+                        </span>
+                    </div>
+                </div>
+            </article>
+            <!--PET 3-->
+            <article class="card pet-card" data-type="Dog" data-location="Lagos" data-search="german shepherd dog puppy">
+                <div
+                class="card-img"
+                style="background-image: url('https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=900&q=80');">
+                   <span class="status">
+                    * Verified
+                   </span>
+                   <button class="heart" onclick="like(this)">
+                    **
+                   </button>
+                </div>
+                <div class="card-body">
+                    <h3>
+                        German Shephard
+                    </h3>
+                    <div class="location">
+                        Lagos
+                    </div>
+                    <div class="price">
+                        #350,000
+                    </div>
+                    <div class="seller">
+                        <span class="avatar">
+                            T.O
+                        </span>
+                        <span>
+                            <b>Tomi O.</b>
+                            <br>
+                            Trusted Seller * 5.0*
+                        </span>
+                    </div>
+                </div>
+            </article>
+            <!--PET 4-->
+            <article class="card pet-card" data-type="Rabbit" data-location="Kano" data-search="rabbit bunny pet">
+                <div class="card-img"
+                style="background-image: url('https://images.unsplash.com/photo-1585110396000-c9ffd4eeb308?auto=format&fit=crop&w=900&q=80');">
+                   <span class="status">
+                    * Verified
+                   </span>
+                   <button class="heart" onclick="like(this)">
+                     **
+                   </button>
+                </div>
+                <div class="card-body">
+                    <h3>
+                        Mini Lop Rabbit
+                    </h3>
+                    <div class="location">
+                        Kano
+                    </div>
+                    <div class="price">
+                        #75,000
+                    </div>
+                    <div class="seller">
+                        <span class="avatar">
+                            SA
+                        </span>
+                        <span>
+                            <b>Sadiq A.</b>
+                            <br>
+                            Trusted seller * 4.9*
+                        </span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+    <!--SAFETY-->
+    <section class="section features" id="Safety">
+        <div class="section-head">
+            <div>
+                <h2>
+                    Built for safer PSP trading
+                </h2>
+                <p>
+                    Tools designed to help buyers and sellers transact with confidence.
+                </p>
+            </div>
+        </div>
+        <div class="feature-grid">
+            <div class="feature">
+                <div class="feature-icon">
+                    /**/
+                </div>
+                <h3>
+                    Verified Profiles
+                </h3>
+                <p>
+                    Seller profiles can be verified and reviewed by the community before transactions
+                </p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    #
+                </div>
+                <h3>
+                    In-App Messaging
+                </h3>
+                <p>
+                    Buyers and sellers can communicate, ask questions and agree on details.
+                </p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    *|
+                </div>
+                <h3>
+                    Local Marketplace 
+                </h3>
+                <p>
+                    Find pets close to you and arrange pickup or delivery through agreed local options.
+                </p>
+            </div>
+        </div>
+    </section>
+    <!--HOW IT WORKS-->
+    <section class="section how" id="how">
+        <div class="section-head">
+            <div>
+                <h2>
+                    How Arewa P2P Works
+                </h2>
+                <p style="color: #d8e5de;">
+                    Simple from listing to handover.
+                </p>
+            </div>
+        </div>
+        <div class="steps">
+            <div class="step">
+                <div class="num">
+                    1
+                </div>
+                <h3>
+                    List 
+                </h3>
+                <p>
+                    Create a pet listing with photos, breed, age, location and price.
+                </p>
+            </div>
+            <div class="step">
+                <div class="num">
+                    2
+                </div>
+                <h3>
+                    Connect
+                </h3>
+                <p>
+                    Intrested buyers message the seller directly through the platform.
+                </p>
+            </div>
+            <div class="step">
+                <div class="num">
+                    3
+                </div>
+                <h3>
+                    Agree 
+                </h3>
+                <p>
+                    Discuss the pet document and safe meeting arrangements.
+                </p>
+            </div>
+            <div class="step">
+                <div class="num">
+                    4
+                </div>
+                <h3>
+                    Complete
+                </h3>
+                <p>
+                    Complete the handover and leave a community review
+                </p>
+            </div>
+        </div>
+    </section>
+    <!--CTA-->
+    <section class="section cta" id="about">
+        <div class="cta-box">
+            <div>
+                <h2>
+                    Have a pet to sell or rehome?
+                </h2>
+                <p>
+                    Join the Arewa Pet Store marketplace and reach prt lovers around you
+                </p>
+            </div>
+            <button class="btn btn-primary" onclick="openModal('sell')">
+                Post a Listing
+            </button>
+        </div>
+    </section>
+    <!--FOOTER-->
+    <footer>
+        <div class="footer-inner">
+            <div>
+                <h3>
+                    **Arewa Pet Store
+                </h3>
+                <p>
+                    A community-first P2P marketplace for pets and pet lovers
+                </p>
+                <p>
+                    @2026 Arewa Pet Store 
+                </p>
+            </div>
+            <div>
+                <h3>
+                    Marketplace
+                </h3>
+                <a href="#" onclick="openModal('sell')">
+                    Sell a Pet
+                </a>
+                <a href="#">
+                    Pet Products
+                </a>
+            </div>
+            <div>
+                <h3>
+                    Community
+                </h3>
+                <a href="#how">
+                    How It Works
+                </a>
+                <a href="#safety">
+                    Safety Centre
+                </a>
+                <a href="#">
+                    Reviews
+                </a>
+            </div>
+            <div>
+                <h3>
+                    Support
+                </h3>
+                <a href="#">
+                    Help Centre
+                </a>
+                <a href="#">
+                    Contact Us
+                    Contact us:Arewapaws on TikTok
+                </a>
+                <a href="#">
+                    Report a Listing 
+                </a>
+            </div>
+        </div>
+    </footer>
+    <!--MODAL-->
+    <div class="modal" id="modal">
+        <div class="modal-box">
+            <div class="modal-head">
+                <h2 id="modalTitle">
+                    Create Listing
+                </h2>
+                <button class="close" onclick="closeModal()">
+                    *
+                </button>
+            </div>
+            <div id="modalContent">
+            </div>
+        </div>
+    </div>
+    <!--TOAST-->
+    <div class="toast" id="toast">
+    </div>
+    <!--JAVASCRIPT-->
+    <script>
+        /*OPEN MODAL*/
+        function openModal(type){
+            const modal = document.getElementById("modal");
+            const title= document.getElementById("modalTitle");
+            const content= document.getElementById("modalContent");
+            modal.classList.add("open");
+            /*LOGIN*/
+            if (type === "login"){
+                title.textContent="Welcome Back";
+                content.innerHTML `
+                <div class="form-group">
+                    <label>
+                     Email
+                    <label>
+                    <input class="input"
+                    type="email"
+                    placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label>
+                      password
+                    </label>
+                    <input class="input"
+                    type="password"
+                    placeholder="********">
+                </div>
+                <button class="btn btn-primary"
+                style="width:100%;margin-top:8px"
+                onclick="showToast('Demo login submitted')">
+                   Login
+                </button>
+                `;
+            }
+            /*SELL PET*/
+            else {
+                title.textContent="List Your Pet";
+                content.innerHTML=`<div class="form-group">
+                    <label>
+                        Pet name/breed
+                    </label>
+                    <input id="PwtName" class="input"
+                    placeholder="e.g. Labrador Puppy">
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            Pet type
+                        </label>
+                        <select id="pet type" class="select">
+                            <option>
+                                Dog
+                            </option>
+                            <option>
+                                Cat
+                            </option>
+                            <option>
+                                Bird
+                            </option>
+                            <option>
+                                Rabbit
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            Location
+                        </label>
+                        <select id="petLocation" class="select">
+                            <option>
+                                Jos
+                            </option>
+                            <option>
+                                Abuja
+                            </option>
+                            <option>
+                                Lagos
+                            </option>
+                            <option>
+                                Kano
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            Price(#)
+                        </label>
+                        <input id="petPrice" class="input" type="number" placeholder="150000">
+                    </div>
+                    <button class="btn btn-primary"
+                    style="width:100%;margin-top:8px"
+                    onclick="submitListing()">
+                       Publish Listing
+                    </button> `;
+            }
+        }
+        /*CLOSE MODAL*/
+        function closeModal() {
+            document
+             .getElementById("modal")
+             .classList
+             .remove("open");
+        }
+        /*SUBMIT LISTING*/ 
+        function submitListing() {
+            const name= document.getElementById("petName").value||"Your Pet";
+            showToast(
+                name + "listing saved as a demo."
+            );
+            closeModal();
+        }
+        /*LIKE*/
+        function like(button) {
+            if (button.textContent ==="**") {
+                button.textContent="***";
+            } else {
+                button.textContent="**"
+            }
+        }
+        /*SEARCH AND FILTER*/
+        function filterPets() {
+            const search =document
+             .getElementById("search")
+             .value
+             .toLowerCase();
+            const type=document
+             .getElementById("type")
+             .value;
+            const location=document
+             .getElementById("location")
+             .value;
+            document 
+             .querySelectorAll(".pet-card")
+             .forEach(card => {
+                const searchData =card.dataset.search;
+                const matchesSearch =!search||
+            searchData.includes(search);
+                const matchesType =!type ||
+                card.dataset.type === type;
+                const matchesLocation= !location ||
+                card.dataset.location===location;
+                if(
+                    matchesSearch&&matchesType&&matchesLocation
+                ){
+                    card.style.display ="none";
+                }
+             });
+        }
+        /*TOAST*/
+        function showToast(message){
+            const toast =
+            document.getElementByld("toast")
+            toast.textContent = message;
+            toast.style.display = "block";
+            setTimeout(()=> {
+                toast.style.display ="none"
+            },2500);
+        }
+        /*CLOSE MODAL WHEN CLICKING OUTSIDE*/
+        document
+          .getElementById("modal")
+          .addEventListener(
+            "click",
+            function(event) {
+                if(
+                    event.target.id ==="modal"
+                ){
+                    closeModal();
+                }
+            }
+          );
+    </script>
+    <body style="background-color: var(--green);"></body>
+</body>
+</html>
